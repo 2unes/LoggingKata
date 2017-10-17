@@ -31,11 +31,6 @@ namespace LoggingKata
 
             var rows = File.ReadAllLines(csvPath);
 
-            foreach (var line in rows)
-            {
-                Console.WriteLine("Line in file" + line);
-            }
-
             if (rows.Length == 0)
             {
                 Logger.Error("Our csv file is missing or empty of content");
