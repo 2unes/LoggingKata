@@ -11,7 +11,7 @@ namespace LoggingKata
     {
         public TacoParser()
         {
-
+                
         }
 
         private static readonly ILog Logger =

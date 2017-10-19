@@ -46,7 +46,7 @@ namespace LoggingKata
             var locations = rows.Select(row => parser.Parse(row));
 
 
-            for 
+           
             //TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
             //HINT:  You'll need two nested forloops
 
