@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using log4net;
 using System.IO;
+using Geolocation;
 
 namespace LoggingKata
 {
@@ -17,34 +18,38 @@ namespace LoggingKata
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+
+           var path = Environment.CurrentDirectory + "\\Taco_Bell-US-AL-Alabama.csv";
+            if (path.Length == 0)
             {
                 Console.WriteLine("You must provide a filename as an argument");
-                Logger.Fatal("Cannot import without filename specified as an argument");
+                Logger.Fatal("Cannot import without filename specified in our path variable");
                 return;
             }
 
             Logger.Info("Log initialized");
-            var csvPath = (Environment.CurrentDirectory + "\\Taco_Bell-US-AL-Alabama.csv");
+           
 
-             Logger.Debug("Created csvPath variable" + csvPath);
+             Logger.Debug("Created path variable" +path);
 
-            var rows = File.ReadAllLines(csvPath);
+            var lines = File.ReadAllLines(path);
 
-            if (rows.Length == 0)
+            if (lines.Length == 0)
             {
-                Logger.Error("Our csv file is missing or empty of content");
+                Logger.Error("No locations to check. Must have at least one location.");
             }
-            else if (rows.Length == 1)
+            else if (lines.Length == 1)
             {
-                Logger.Warn("Can't compare there is only one element");
+                Logger.Warn("Only one location provided. Must have two to perform a check.");
             }
 
             Console.ReadLine();
 
             var parser = new TacoParser();
-            var locations = rows.Select(row => parser.Parse(row));
+            Logger.Debug("Initialized our Parser");
 
+            var locations = lines.Select(line => parser.Parse(line));
+        
 
            
             //TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
