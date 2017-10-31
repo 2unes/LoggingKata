@@ -14,7 +14,7 @@ namespace LoggingKata
     {
         public TacoParser()
         {
-                
+
         }
 
         private static readonly ILog Logger =
@@ -43,10 +43,11 @@ namespace LoggingKata
             }
             catch (Exception e)
             {
-                Logger.Error("Failed to parse the location");
+                Logger.Error("Failed to parse the location", e);
                 Console.WriteLine(e);
                 return null;
             }
+
 
             return new TacoBell
             {
